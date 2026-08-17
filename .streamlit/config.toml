@@ -1,0 +1,144 @@
+# ==============================================================================
+#  Streamlit theme configuration
+#  AI-Powered Personal Tutor and Student Support Agent
+# ==============================================================================
+#
+#  Accessibility rationale
+#  The previous configuration set primaryColor = "#C62828", a saturated red.
+#  That was replaced for two reasons:
+#
+#    1. Red is the single most confusable hue under colour vision deficiency.
+#       Protanopia in particular darkens red substantially, so a red accent
+#       loses both hue identity and apparent contrast for those users.
+#
+#    2. Red already carries meaning in this interface: it is the Low confidence
+#       band. Using the same hue for ordinary chrome (buttons, focus rings,
+#       links) would have made a semantic colour ambiguous, which is precisely
+#       the failure mode WCAG 2.2 SC 1.4.1 warns against.
+#
+#       #C62828 also measures only 3.29:1 against the dark page background,
+#       below the 4.5:1 that SC 1.4.3 requires for text, so it was failing on
+#       contrast as well as on meaning.
+#
+#  The accent is now Paul Tol's high-contrast blue (Tol, 2021), the most
+#  separable of the three scheme colours under deuteranopia, protanopia and
+#  tritanopia. A lightened variant is used on dark backgrounds, where the
+#  original #004488 measures 1.92:1 against the page and fails SC 1.4.3.
+#
+#  Neutrals are a desaturated slate ramp. They deliberately carry almost no
+#  chroma, so the only saturated colours on screen are the three confidence
+#  hues, which keeps the semantic palette unambiguous.
+# ==============================================================================
+
+[browser]
+gatherUsageStats = false
+
+[client]
+# The default toolbar is developer-facing. Study participants should see the
+# tutor, not a Deploy button.
+toolbarMode = "minimal"
+
+# ==============================================================================
+#  Shared typography and shape
+# ==============================================================================
+[theme]
+base = "dark"
+
+# System-first stack: no network fetch, so the interface renders identically on
+# a lab machine with no internet and in the recorded demonstration video.
+font = "Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+headingFont = "Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+codeFont = "'JetBrains Mono', 'Cascadia Code', Consolas, 'SF Mono', Menlo, monospace"
+
+# 16px base. Below this, extended technical prose becomes tiring to read, and
+# WCAG 2.2 SC 1.4.4 resizing behaves better from a 16px anchor.
+baseFontSize = 16
+baseRadius = "0.6rem"
+buttonRadius = "0.5rem"
+
+# Visible borders on inputs and widgets. WCAG 2.2 SC 1.4.11 requires 3:1 for
+# non-text UI components; borderless inputs routinely fail it.
+showWidgetBorder = true
+showSidebarBorder = true
+
+# ==============================================================================
+#  Light theme
+# ==============================================================================
+[theme.light]
+primaryColor = "#004488"            # Tol high-contrast blue, 9.37:1 on the page
+backgroundColor = "#FBFCFD"
+secondaryBackgroundColor = "#EFF3F7"
+textColor = "#141D26"               # 16.57:1 on the page background
+linkColor = "#00539C"
+# Decorative container edges. Control boundaries are given a stronger colour in
+# ui_theme.py, where SC 1.4.11's 3:1 applies; see the note there.
+borderColor = "#C4D0DC"
+codeBackgroundColor = "#EFF3F7"
+codeTextColor = "#1E4B7A"
+
+# Streamlit's semantic alert colours are remapped onto the Tol scheme so that
+# st.success / st.warning / st.error never introduce a red-green pairing.
+greenColor = "#004488"
+greenBackgroundColor = "#E4EDF6"
+greenTextColor = "#00305F"
+yellowColor = "#785E00"
+yellowBackgroundColor = "#F7EFD9"
+yellowTextColor = "#5E4A00"
+redColor = "#A24051"
+redBackgroundColor = "#F8E7EA"
+redTextColor = "#8E3B4A"
+blueColor = "#004488"
+blueBackgroundColor = "#E4EDF6"
+blueTextColor = "#00305F"
+
+[theme.light.sidebar]
+backgroundColor = "#F4F7FA"
+secondaryBackgroundColor = "#E7EDF3"
+borderColor = "#D7DFE7"
+primaryColor = "#004488"
+linkColor = "#00539C"
+
+# ==============================================================================
+#  Dark theme
+# ==============================================================================
+[theme.dark]
+primaryColor = "#77AADD"            # lightened Tol blue, 7.56:1 on the page
+backgroundColor = "#0F141A"
+secondaryBackgroundColor = "#19212A"
+textColor = "#E9EEF3"               # 15.85:1 on the page background
+linkColor = "#99C0E8"
+# See the note on the light theme's borderColor.
+borderColor = "#38434F"
+codeBackgroundColor = "#19212A"
+codeTextColor = "#9CC5EA"
+
+greenColor = "#77AADD"
+greenBackgroundColor = "#132433"
+greenTextColor = "#A8CBEA"
+yellowColor = "#DDAA33"
+yellowBackgroundColor = "#2A2314"
+yellowTextColor = "#E8C069"
+redColor = "#EE99AA"
+redBackgroundColor = "#2E1B20"
+redTextColor = "#F2B3C0"
+blueColor = "#77AADD"
+blueBackgroundColor = "#132433"
+blueTextColor = "#A8CBEA"
+
+[theme.dark.sidebar]
+backgroundColor = "#0B1015"
+secondaryBackgroundColor = "#19212A"
+borderColor = "#2B3540"
+primaryColor = "#77AADD"
+linkColor = "#99C0E8"
+
+# ==============================================================================
+#  References
+# ==============================================================================
+#  Tol, P. (2021). Colour schemes. SRON Technical Note SRON/EPS/TN/09-002.
+#     Source of the high-contrast qualitative palette.
+#  W3C (2023). WCAG 2.2, SC 1.4.1 Use of Colour, SC 1.4.3 Contrast (Minimum),
+#     SC 1.4.11 Non-text Contrast.
+#  World Health Organization (2023). Blindness and vision impairment:
+#     colour blindness.
+# ==============================================================================

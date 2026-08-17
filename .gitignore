@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets - never commit the API key
+.streamlit/secrets.toml
+
+# Course material. only needed to rebuild the knowledge base, not to run the app, and it is King's College London material that is not redistributed
+data/Network security content/
+data/Network security content (Cleaned)/
+
+# Run-time logs, per installation rather than per student
+data/quiz_history.jsonl
+
+# Scratch
+evaluation/to_score.txt
+outputs/
