@@ -2,7 +2,7 @@ Jannat Faisal
 K19016525
 
 # Cyber Tutor
-
+The application is also running here--> https://cyber-tutor.streamlit.app/
 ## Requirements
 
 - Python 3.11 or later
