@@ -23,6 +23,8 @@ Usage:
     py -m streamlit run streamlit_app.py
 """
 
+import streamlit as st
+st.write("app started")
 #chromadb needs sqlite3 3.35 or later and some hosting images ship an older one, which fails on the first chromadb import. chromadb has its own swap
 #for this but only runs it on Colab. has to sit above the imports to beat chromadb to it, and does nothing at all where pysqlite3 is absent, so local
 #runs are unaffected
